@@ -291,7 +291,7 @@ chrome_options.add_argument("--headless")
 chrome_options.add_argument("--disable-extensions")
 # chrome_options.add_argument("--incognito")
 
-CHROMEDRIVER_PATH = "chromedriver.exe"
+CHROMEDRIVER_PATH = "./chromedriver.exe"
 #brave_path = "C:\\Program Files\\BraveSoftware\\Brave-Browser\\Application\\brave.exe"
 #chrome_options.binary_location = brave_path
 chrome_options.add_experimental_option("excludeSwitches", ["enable-automation"])
@@ -299,7 +299,7 @@ chrome_options.add_experimental_option('useAutomationExtension', False)
 chrome_options.add_argument("user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36")
 
 driver = webdriver.Chrome(service=Service(CHROMEDRIVER_PATH),options=chrome_options)
-quote_row = csv_poprow("new_quotes.csv")
+quote_row = csv_poprow("./new_quotes.csv")
 
 if quote_row != None:
     quote = '"' + quote_row[0] + '"' + ' - ' + color.BOLD + quote_row[1] + color.END
