@@ -220,12 +220,13 @@ class Twitter:
         try:
             link = self.driver.find_element(By.XPATH,"//a[@href='/compose/post']")
             link.click()
-            WebDriverWait(self.driver,10).until(
-                EC.presence_of_element_located((By.XPATH,"//button[@data-testid='tweetButton']"))
-            )
             content_field = self.driver.find_element(By.XPATH,"//*[@aria-label='Post text']")
             content_field.click()
             content_field.send_keys(content)
+            time.sleep(2)
+            WebDriverWait(self.driver,10).until(
+                EC.presence_of_element_located((By.XPATH,"//button[@data-testid='tweetButton']"))
+            )
             post_button = self.driver.find_element(By.XPATH,"//button[@data-testid='tweetButton']")
             post_button.click()
         except Exception as e:
