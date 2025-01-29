@@ -40,7 +40,7 @@ def csv_poprow(path):
             print(f'processing row: {row}')
             rows.pop(0)
 
-            with open(path,'w',newline='') as f2:
+            with open(path,'w',newline='',encoding='utf-8') as f2:
                 writer = csv.writer(f2)
                 writer.writerows(rows)
             
@@ -286,20 +286,20 @@ class Twitter:
     
 
 chrome_options = Options()
-#chrome_options.add_argument("--headless")
+chrome_options.add_argument("--headless")
 # chrome_options.add_argument("--start-maximized")
 chrome_options.add_argument("--disable-extensions")
 # chrome_options.add_argument("--incognito")
 
-CHROMEDRIVER_PATH = "D:\\want to delelte\\chromedriver-win64\\chromedriver-win64\\chromedriver.exe"
-brave_path = "C:\\Program Files\\BraveSoftware\\Brave-Browser\\Application\\brave.exe"
-chrome_options.binary_location = brave_path
+CHROMEDRIVER_PATH = "chromedriver.exe"
+#brave_path = "C:\\Program Files\\BraveSoftware\\Brave-Browser\\Application\\brave.exe"
+#chrome_options.binary_location = brave_path
 chrome_options.add_experimental_option("excludeSwitches", ["enable-automation"])
 chrome_options.add_experimental_option('useAutomationExtension', False)
 chrome_options.add_argument("user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36")
 
 driver = webdriver.Chrome(service=Service(CHROMEDRIVER_PATH),options=chrome_options)
-quote_row = csv_poprow("D:\\want to delelte\\quotes.csv\\quotes.csv")
+quote_row = csv_poprow("new_quotes.csv")
 
 if quote_row != None:
     quote = '"' + quote_row[0] + '"' + ' - ' + color.BOLD + quote_row[1] + color.END
