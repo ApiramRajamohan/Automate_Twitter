@@ -169,6 +169,17 @@ class Twitter:
             password_field.send_keys(self.password)
             password_field.send_keys(Keys.RETURN)
             print("Entered Password")
+           #email 
+        try:
+            WebDriverWait(self.driver,10).until(
+                EC.presence_of_element_located((By.XPATH,"//span[contains(text(), 'email')]"))
+            )
+            email_field = self.driver.find_element(By.XPATH, "//input[@name='text']")
+            email_field.send_keys(self.email)
+            email_field.send_keys(Keys.RETURN)
+            print("Email Entered")
+        except:
+            print("Dosen't Require Email")
         try:
             WebDriverWait(self.driver, 10).until(
                 EC.presence_of_element_located((By.XPATH, "//div[@aria-label='Timeline: Trending now']"))
