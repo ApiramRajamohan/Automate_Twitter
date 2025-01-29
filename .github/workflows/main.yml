@@ -12,6 +12,9 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
         
+      - name: Set execute permissions on chromedriver
+        run: chmod +x A/chromedriver.exe
+        
       - name: Check for CSV and chromedriver
         run: |
           ls -l new_quotes.csv   # List the CSV file to ensure it exists
