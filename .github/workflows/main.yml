@@ -13,7 +13,7 @@ jobs:
         uses: actions/checkout@v4
         
       - name: Set execute permissions on chromedriver
-        run: chmod +x A/chromedriver.exe
+        run: chmod +x chromedriver.exe
         
       - name: Check for CSV and chromedriver
         run: |
