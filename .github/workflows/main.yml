@@ -11,6 +11,12 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
+        
+      - name: Check for CSV and chromedriver
+        run: |
+          ls -l your_data.csv   # List the CSV file to ensure it exists
+          ls -l chromedriver.exe  # List chromedriver to ensure it exists
+    
 
       - name: Set up Python
         uses: actions/setup-python@v5
