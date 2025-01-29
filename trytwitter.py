@@ -309,8 +309,15 @@ chrome_options.add_experimental_option("excludeSwitches", ["enable-automation"])
 chrome_options.add_experimental_option('useAutomationExtension', False)
 chrome_options.add_argument("user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36")
 
+quote_row = csv_poprow("new_quotes.csv")
+while(quote_row != None):
+    quote = '"' + quote_row[0] + '"' + ' - '  + quote_row[1]
+    if len(quote) > 260:
+        quote_row = csv_poprow("new_quotes.csv")
+    else:
+        break
+
 driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()),options=chrome_options)
-quote_row = csv_poprow("./new_quotes.csv")
 
 if quote_row != None:
     quote = '"' + quote_row[0] + '"' + ' - ' + color.BOLD + quote_row[1] + color.END
