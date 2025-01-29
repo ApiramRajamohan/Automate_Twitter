@@ -1,7 +1,7 @@
 name: Twitter automatic quote post
 on:
   schedule:
-    - cron: "0 * * * *"  # Runs every hour on the hour
+    - cron: "/5 * * * *"  # Runs every hour on the hour
 
 jobs:
   run-script:
