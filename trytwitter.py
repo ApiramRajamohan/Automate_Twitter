@@ -223,7 +223,7 @@ class Twitter:
             WebDriverWait(self.driver,10).until(
                 EC.presence_of_element_located((By.XPATH,"//button[@data-testid='tweetButton']"))
             )
-            content_field = self.driver.find_element(By.XPATH,"//div[@aria-label='Post text']")
+            content_field = self.driver.find_element(By.XPATH,"//*[@aria-label='Post text']")
             content_field.click()
             content_field.send_keys(content)
             post_button = self.driver.find_element(By.XPATH,"//button[@data-testid='tweetButton']")
