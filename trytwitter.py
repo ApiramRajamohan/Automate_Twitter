@@ -210,21 +210,34 @@ class Twitter:
             print("Trending section not found")
 
     def post_text(self,content):
+		  time.sleep(5)
         try:
-            WebDriverWait(self.driver,10).until(
+            WebDriverWait(self.driver,15).until(
                 EC.presence_of_element_located((By.XPATH,"//a[@href='/compose/post']"))
             )
         except Exception as e:
             print("Couldnt able find post link because of " + str(e))
             return False
-        try:
+        finally:
             link = self.driver.find_element(By.XPATH,"//a[@href='/compose/post']")
             link.click()
-            content_field = self.driver.find_element(By.XPATH,"//*[@aria-label='Post text']")
-            content_field.click()
+            print("Post text area opened")
+            time.sleep(3)
+        try:
+            WebDriverWait(self.driver,15).until(
+                EC.presence_of_element_located((By.XPATH,"//*[@data-testid='tweetTextarea_0']"))
+            )
+            content_field = self.driver.find_element(By.XPATH,"//*[@data-testid='tweetTextarea_0']")
+            #content_field.click()
             content_field.send_keys(content)
+            print("Entered text")
             time.sleep(2)
-            WebDriverWait(self.driver,10).until(
+        except Exception as e:
+            print("Couldnt enter the text coz of " + str(e))
+            return False
+        
+        try:
+            WebDriverWait(self.driver,15).until(
                 EC.presence_of_element_located((By.XPATH,"//button[@data-testid='tweetButton']"))
             )
             post_button = self.driver.find_element(By.XPATH,"//button[@data-testid='tweetButton']")
@@ -321,7 +334,7 @@ while(quote_row != None):
 driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()),options=chrome_options)
 
 if quote_row != None:
-    quote = '"' + quote_row[0] + '"' + ' - ' + color.BOLD + quote_row[1] + color.END
+    quote = '"' + quote_row[0] + '"' + ' - ' + quote_row[1]
     print(quote)
     bot = Twitter("QuoteofdeDay","Quoteoftheyear","sliitbook@gmail.com",driver)
     bot.login()
