@@ -33,9 +33,12 @@ jobs:
       - name: Run Python script
         run: python trytwitter.py  # Run your Python script
       - name: Commit and push if CSV file changed
+        env:
+          GIT_AUTH: ${{ secrets.PAT_TOKEN }}
         run: |
           git config --global user.name "github-actions"
           git config --global user.email "github-actions@github.com"
+          git remote set-url origin https://x-access-token:${GIT_AUTH}@github.com/ApiramRajamohan/Automate_Twitter.git
           git add new_quotes.csv
           git commit -m "Update CSV file: Removed a row" || echo "No changes to commit"
           git push
