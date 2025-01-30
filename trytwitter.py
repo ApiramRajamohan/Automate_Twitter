@@ -210,7 +210,7 @@ class Twitter:
             print("Trending section not found")
 
     def post_text(self,content):
-		  time.sleep(5)
+        time.sleep(5)
         try:
             WebDriverWait(self.driver,15).until(
                 EC.presence_of_element_located((By.XPATH,"//a[@href='/compose/post']"))
